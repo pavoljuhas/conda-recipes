@@ -10,8 +10,8 @@ source:
    # List any patch files here
    # - fix.patch
 
-# build:
-  #preserve_egg_dir: True
+build:
+  preserve_egg_dir: True
   #entry_points:
     # Put any entry points (scripts to be generated automatically) here. The
     # syntax is module:function.  For example
@@ -32,6 +32,8 @@ requirements:
 
   run:
     - python
+    - setuptools
+    - numpy
 
 test:
   # Python imports
@@ -40,17 +42,15 @@ test:
     - diffpy.utils
     - diffpy.utils.parsers
     - diffpy.utils.tests
-    - diffpy.utils.wx
 
-  #commands:
+  commands:
     # You can put test commands to be run here.  Use this to test that the
     # entry points work.
-
 
   # You can also put a file called run_test.py in the recipe that will be run
   # at test time.
 
-  # requires:
+  requires:
     # Put any additional test requirements here.  For example
     # - nose
 
