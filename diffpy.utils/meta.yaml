@@ -1,11 +1,10 @@
 package:
   name: diffpy.utils
-  version: !!str 1.1
+  version: 1.1
 
 source:
-  fn: diffpy.utils-1.1.tar.gz
-  url: https://pypi.python.org/packages/source/d/diffpy.utils/diffpy.utils-1.1.tar.gz
-  md5: 51a595182e93bdc6787220e7ea2f911d
+  git_url: https://github.com/diffpy/diffpy.utils
+  git_tag: 6e8b49899b3ff7f6210fdca8df0dec7eeb1237bf
 #  patches:
    # List any patch files here
    # - fix.patch
@@ -23,7 +22,7 @@ build:
 
   # If this is a new build for the same version, increment the build
   # number. If you do not include this key, it defaults to 0.
-  # number: 1
+  number: 6
 
 requirements:
   build:
