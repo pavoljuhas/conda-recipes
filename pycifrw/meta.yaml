@@ -1,15 +1,14 @@
 package:
   name: pycifrw
-  version: !!str 3.6.2
+  version: !!str 3.6.2.1
 
 source:
-  fn: PyCifRW-3.6.2.tar.gz
-  url: https://pypi.python.org/packages/source/P/PyCifRW/PyCifRW-3.6.2.tar.gz
-  md5: 3f1f6ea26ba3654d6a361a89b1fea480
+  fn: PyCifRW-3.6.2.1.tar.gz
+  url: https://pypi.python.org/packages/source/P/PyCifRW/PyCifRW-3.6.2.1.tar.gz
+  md5: b6b693ad4f414b6a9fe4202af314ddce
   patches:
    # List any patch files here
     - flex.patch
-    - sets.patch
 
 # build:
   #preserve_egg_dir: True
