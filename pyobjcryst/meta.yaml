@@ -1,0 +1,68 @@
+package:
+  name: pyobjcryst
+  version: "1.0"
+
+source:
+  git_url: https://github.com/diffpy/pyobjcryst
+  git_tag: 4000dab3d5af7b6f7b4aea4c120d2bf94c18d949
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  preserve_egg_dir: True
+  # entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - pyobjcryst = pyobjcryst:main
+    #
+    # Would create an entry point called pyobjcryst that calls pyobjcryst.main()
+
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  number: 13
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - numpy >=1.3
+    - libobjcryst 1.9.8
+    - boost
+    - scons
+
+  run:
+    - python
+    - setuptools
+    - numpy >=1.3
+    - libobjcryst 1.9.8
+    - boost
+
+test:
+  # Python imports
+  imports:
+    - pyobjcryst
+    - pyobjcryst.tests
+
+  # commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: https://github.com/diffpy/pyobjcryst
+  license: BSD License
+  summary: 'Python bindings to the ObjCryst++ crystallographic library.'
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
