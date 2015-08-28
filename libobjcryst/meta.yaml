@@ -10,13 +10,14 @@ source:
   # url: https://github.com/diffpy/libobjcryst/releases/download/v1.9.8/libobjcryst-1.9.8.tar.gz
 
 build:
-  number: 5
-  binary_relocation: False
+  number: 6
+  binary_relocation: False      # [linux]
 
 requirements:
   build:
     - scons
-    - boost
+    - boost                     # [linux]
+    - boost 1.56.0 py27_2       # [osx]
 
 about:
   home: https://github.com/diffpy/libobjcryst/
