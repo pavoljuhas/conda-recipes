@@ -1,14 +1,15 @@
 package:
   name: pycifrw
-  version: !!str 3.6.2.1
+  version: !!str 4.1.1
+
 
 source:
-  fn: PyCifRW-3.6.2.1.tar.gz
-  url: https://pypi.python.org/packages/source/P/PyCifRW/PyCifRW-3.6.2.1.tar.gz
-  md5: b6b693ad4f414b6a9fe4202af314ddce
-  patches:
+  fn: PyCifRW-4.1.1.tar.gz
+  url: https://pypi.python.org/packages/source/P/PyCifRW/PyCifRW-4.1.1.tar.gz
+  md5: 2435f47a1a7a935d43c8402d8f4339d5
+#  patches:
    # List any patch files here
-    - flex.patch
+   # - fix.patch
 
 # build:
   #preserve_egg_dir: True
@@ -36,9 +37,9 @@ requirements:
 test:
   # Python imports
   imports:
-    - CifFile
-    - StarFile
-    - StarScan
+    - CifFile.CifFile
+    - CifFile.StarFile
+    - CifFile.StarScan
 
   #commands:
     # You can put test commands to be run here.  Use this to test that the
@@ -55,6 +56,7 @@ test:
 about:
   home: https://bitbucket.org/jamesrhester/pycifrw/overview
   license: Python Software Foundation License
+  license_file: LICENSE
   summary: 'CIF/STAR file support for Python'
 
 # See
