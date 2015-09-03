@@ -61,6 +61,7 @@ test:
 about:
   home: https://github.com/diffpy/diffpy.Structure
   license: BSD License
+  license_file: LICENSE.txt
   summary: 'Crystal structure container and parsers for structure formats.'
 
 # See

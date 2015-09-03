@@ -56,6 +56,7 @@ test:
 about:
   home: https://github.com/diffpy/diffpy.utils/
   license: BSD License
+  license_file: LICENSE.txt
   summary: 'Shared utilities for diffpy packages.'
 
 # See

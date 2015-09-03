@@ -63,6 +63,7 @@ test:
 about:
   home: https://github.com/diffpy/pyobjcryst
   license: BSD License
+  license_file: LICENSE.txt
   summary: 'Python bindings to the ObjCryst++ crystallographic library.'
 
 # See

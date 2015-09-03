@@ -22,3 +22,4 @@ requirements:
 about:
   home: https://github.com/diffpy/libobjcryst/
   license: GPLv2
+  license_file: LICENSE.txt
