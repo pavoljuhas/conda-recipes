@@ -61,10 +61,9 @@ test:
 
 about:
   home: https://github.com/diffpy/diffpy.Structure
+  summary: Crystal structure container and parsers for structure formats.
   license: Modified BSD License
   license_file: LICENSE.txt
-  summary: 'Crystal structure container and parsers for structure formats.'
 
-# See
-# http://docs.continuum.io/conda/build.html for
-# more information about meta.yaml
+# See http://docs.continuum.io/conda/build.html
+# for more information about meta.yaml.

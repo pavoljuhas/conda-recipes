@@ -47,10 +47,9 @@ test:
 
 about:
   home: https://github.com/diffpy/diffpy.utils/
+  summary: Shared utilities for diffpy packages.
   license: Modified BSD License
   license_file: LICENSE.txt
-  summary: 'Shared utilities for diffpy packages.'
 
-# See
-# http://docs.continuum.io/conda/build.html for
-# more information about meta.yaml
+# See http://docs.continuum.io/conda/build.html
+# for more information about meta.yaml.

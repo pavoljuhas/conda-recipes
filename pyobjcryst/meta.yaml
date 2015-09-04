@@ -51,10 +51,9 @@ test:
 
 about:
   home: https://github.com/diffpy/pyobjcryst
+  summary: Python bindings to the ObjCryst++ crystallographic library.
   license: Modified BSD License
   license_file: LICENSE.txt
-  summary: 'Python bindings to the ObjCryst++ crystallographic library.'
 
-# See
-# http://docs.continuum.io/conda/build.html for
-# more information about meta.yaml
+# See http://docs.continuum.io/conda/build.html
+# for more information about meta.yaml.

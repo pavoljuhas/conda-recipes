@@ -59,6 +59,5 @@ about:
   license_file: LICENSE
   summary: 'CIF/STAR file support for Python'
 
-# See
-# http://docs.continuum.io/conda/build.html for
-# more information about meta.yaml
+# See http://docs.continuum.io/conda/build.html
+# for more information about meta.yaml.
