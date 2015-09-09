@@ -4,7 +4,7 @@ package:
 
 source:
   git_url: https://github.com/diffpy/diffpy.utils
-  git_tag: 14087b2295e9f8053e26b480caedbe79f7955215
+  git_rev: 14087b2295e9f8053e26b480caedbe79f7955215
 #  patches:
    # List any patch files here
    # - fix.patch

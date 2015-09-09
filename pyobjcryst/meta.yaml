@@ -4,7 +4,7 @@ package:
 
 source:
   git_url: https://github.com/diffpy/pyobjcryst
-  git_tag: 4000dab3d5af7b6f7b4aea4c120d2bf94c18d949
+  git_rev: 4000dab3d5af7b6f7b4aea4c120d2bf94c18d949
 
 build:
   preserve_egg_dir: True

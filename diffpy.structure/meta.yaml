@@ -5,7 +5,7 @@ package:
 
 source:
   git_url: https://github.com/diffpy/diffpy.Structure
-  git_tag: b411cd7970d5e557968e3303e386bce574473687
+  git_rev: b411cd7970d5e557968e3303e386bce574473687
 #  patches:
    # List any patch files here
    # - fix.patch

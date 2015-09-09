@@ -5,7 +5,7 @@ package:
 
 source:
   git_url: https://github.com/diffpy/diffpy.srreal
-  git_tag: fe3e97fc34b85080c0982e4bdd1ae5f217293fa2
+  git_rev: fe3e97fc34b85080c0982e4bdd1ae5f217293fa2
 
 build:
   preserve_egg_dir: True
