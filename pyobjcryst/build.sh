@@ -2,12 +2,13 @@
 
 export CPATH="$PREFIX/include:$CPATH"
 export LIBRARY_PATH="$PREFIX/lib:$LIBRARY_PATH"
+MYNCPU=$(( (CPU_COUNT > 4) ? 4 : CPU_COUNT ))
 
 if [ `uname` == Darwin ]; then
     export DYLD_FALLBACK_LIBRARY_PATH="$PREFIX/lib:$DYLD_FALLBACK_LIBRARY_PATH"
 fi
 
-scons -j $CPU_COUNT install prefix=$PREFIX
+scons -j $MYNCPU install prefix=$PREFIX
 
 # Add more build steps here, if they are necessary.
 

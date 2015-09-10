@@ -2,8 +2,9 @@
 
 export CPATH="${PREFIX}/include:${CPATH}"
 export LIBRARY_PATH="$PREFIX/lib:$LIBRARY_PATH"
+MYNCPU=$(( (CPU_COUNT > 4) ? 4 : CPU_COUNT ))
 
-scons -j $CPU_COUNT lib alltests
+scons -j $MYNCPU lib alltests
 
 # Execute unit tests in a modified environment so that Anaconda
 # shared libraries can be found.
