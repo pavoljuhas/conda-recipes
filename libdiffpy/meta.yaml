@@ -1,11 +1,11 @@
 package:
   name: libdiffpy
   ## Use __conda_version__.txt.
-  # version: 1.2.72
+  # version: 1.2.73
 
 source:
   git_url: https://github.com/diffpy/libdiffpy.git
-  git_rev: b7a0433aafc7211f013c305a64c30123d061fa5b
+  git_rev: 8e0da27e30dfe1a4b0ab07eaa88b6e9db4123cea
 
   # fn: libdiffpy-1.2.tar.gz
   # url: https://github.com/diffpy/libdiffpy/releases/download/v1.2/libdiffpy-1.2.tar.gz
