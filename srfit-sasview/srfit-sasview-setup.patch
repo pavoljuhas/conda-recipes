@@ -1,0 +1,27 @@
+diff --git setup.py setup.py
+index 3f47d15..37f17c3 100644
+--- setup.py
++++ setup.py
+@@ -369,9 +369,21 @@ if os.name=='nt':
+ else:
+     required.extend(['pil'])
+    
++# Filter packages for srfit-sasview ------------------------------------------
++
++import re
++rx = re.compile(r'sas$|sas[.](?:data_util|dataloader|models|pr)\b')
++packages = [p for p in packages if rx.match(p)]
++# Avoid installing unused image files.
++del package_data['sas.models']
++# Avoid installing any dependencies.
++required = []
++
++# ----------------------------------------------------------------------------
++
+ # Set up SasView    
+ setup(
+-    name="sasview",
++    name="srfit-sasview",
+     version = VERSION,
+     description = "SasView application",
+     author = "SasView Team",
