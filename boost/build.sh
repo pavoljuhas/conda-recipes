@@ -28,8 +28,9 @@ if [ `uname` == Linux ]; then
     | tee bootstrap.log 2>&1
 
   ./b2 \
-    variant=release address-model=${ARCH} architecture=x86 \
-    threading=multi link=shared toolset=gcc include=${INCLUDE_PATH} \
+    variant=release \
+    threading=multi link=shared toolset=gcc \
+    address-model=${ARCH} architecture=x86 \
     -j${CPU_COUNT} \
     install | tee b2.log 2>&1
 fi
