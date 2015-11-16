@@ -9,28 +9,27 @@
 # http://stackoverflow.com/questions/20108407/how-do-i-compile-boost-for-os-x-64b-platforms-with-stdlibc
 
 mkdir -vp ${PREFIX}/bin;
+MYNCPU=$(( (CPU_COUNT > 4) ? 4 : CPU_COUNT ))
 
-if [ `uname` == Darwin ]; then
-  ./bootstrap.sh \
+case `uname` in
+    Darwin)
+        b2_options=( toolset=clang )
+        ;;
+    Linux)
+        b2_options=(
+            toolset=gcc
+            address-model=${ARCH}
+            architecture=x86
+            )
+        ;;
+esac
+
+
+./bootstrap.sh \
     --prefix="${PREFIX}/" --libdir="${PREFIX}/lib/" \
-    | tee bootstrap.log 2>&1
+    2>&1 | tee bootstrap.log
 
-  ./b2 \
-    variant=release \
-    threading=multi link=shared toolset=clang \
-    -j $CPU_COUNT \
-    install | tee b2.log 2>&1
-fi
 
-if [ `uname` == Linux ]; then
-  ./bootstrap.sh \
-    --prefix="${PREFIX}/" --libdir="${PREFIX}/lib/" \
-    | tee bootstrap.log 2>&1
-
-  ./b2 \
-    variant=release \
-    threading=multi link=shared toolset=gcc \
-    address-model=${ARCH} architecture=x86 \
-    -j${CPU_COUNT} \
-    install | tee b2.log 2>&1
-fi
+./b2 -j $MYNCPU \
+    variant=release threading=multi link=shared "${b2_options[@]}" \
+    install 2>&1 | tee b2.log
