@@ -20,6 +20,7 @@ case `uname` in
             toolset=gcc
             address-model=${ARCH}
             architecture=x86
+            linkflags="'-Wl,-rpath,\$ORIGIN'"
             )
         ;;
 esac
