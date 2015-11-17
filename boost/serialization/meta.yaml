@@ -1,0 +1,25 @@
+package:
+  name: boost-serialization
+  version: 1.59.0
+
+build:
+  number: 0
+  binary_relocation: False
+  always_include_files:
+    - lib/libboost_serialization.so             # [linux]
+    - lib/libboost_serialization.so.1.59.0      # [linux]
+    - lib/libboost_wserialization.so            # [linux]
+    - lib/libboost_wserialization.so.1.59.0     # [linux]
+    - lib/libboost_serialization.dylib          # [osx]
+    - lib/libboost_wserialization.dylib         # [osx]
+
+requirements:
+  build:
+    - boost-all 1.59.0
+
+  run:
+    - icu                                       # [unix]
+
+about:
+  home: http://www.boost.org/
+  license: Boost-1.0
