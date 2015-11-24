@@ -3,13 +3,14 @@ package:
   version: 2.0a1
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   run:
     - diffpy.structure <1.4
     - diffpy.utils 1.1.*
-    - pyobjcryst 1.0.post12 py27_0
+    - pyobjcryst 1.0.post12 py27_0      [linux]
+    - pyobjcryst 1.0.post12 py27_1      [osx]
     - periodictable 1.4.1
     - diffpy.srreal <=1.1
     - diffpy.srfit 1.1a0.*
