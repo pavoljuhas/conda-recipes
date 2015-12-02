@@ -12,14 +12,14 @@ build:
 
   # If this is a new build for the same version, increment the build
   # number. If you do not include this key, it defaults to 0.
-  number: 0
+  number: 10
 
 requirements:
   build:
     - python
     - setuptools
     - numpy 1.9.2
-    - libobjcryst 2015.1a1 0
+    - libobjcryst 2015.1a1 10
     - boost 1.57.0              # [linux]
     - boost 1.56.0 py27_2       # [osx]
     - scons
@@ -28,7 +28,7 @@ requirements:
     - python
     - setuptools
     - numpy >=1.9.2
-    - libobjcryst 2015.1a1 0
+    - libobjcryst 2015.1a1 10
     - boost 1.57.0              # [linux]
     - boost 1.56.0              # [osx]
 
