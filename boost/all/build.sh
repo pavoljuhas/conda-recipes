@@ -9,7 +9,7 @@
 # http://stackoverflow.com/questions/20108407/how-do-i-compile-boost-for-os-x-64b-platforms-with-stdlibc
 
 mkdir -vp ${PREFIX}/bin;
-MYNCPU=$(( (CPU_COUNT > 4) ? 4 : CPU_COUNT ))
+MYNCPU=$(( (CPU_COUNT > 8) ? 8 : CPU_COUNT ))
 
 case `uname` in
     Darwin)
