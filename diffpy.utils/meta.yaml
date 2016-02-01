@@ -1,20 +1,20 @@
 package:
   name: diffpy.utils
-  version: 1.1.post10
+  ## Use __conda_version__.txt.
 
 source:
-  git_url: https://github.com/diffpy/diffpy.utils
-  git_rev: 14087b2295e9f8053e26b480caedbe79f7955215
-#  patches:
-   # List any patch files here
-   # - fix.patch
+  fn: diffpy.utils-1.2.1.tar.gz
+  url: https://pypi.python.org/packages/source/d/diffpy.utils/diffpy.utils-1.2.1.tar.gz
+  md5: 1678f7e65782ef0219071157554726e6
+  # git_url: https://github.com/diffpy/diffpy.utils
+  # git_rev: master
 
 build:
   preserve_egg_dir: True
 
   # If this is a new build for the same version, increment the build
   # number. If you do not include this key, it defaults to 0.
-  number: 1
+  # number: 0
 
 requirements:
   build:
