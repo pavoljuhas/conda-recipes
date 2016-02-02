@@ -4,8 +4,11 @@ package:
   # version: "1.1a0"
 
 source:
-  git_url: https://github.com/diffpy/diffpy.srreal
-  git_rev: ec3b56d1bbf24bcbdd2a77aa663cfae6ac25deb4
+  fn: diffpy.srreal-1.1.tar.gz
+  url: https://pypi.python.org/packages/source/d/diffpy.srreal/diffpy.srreal-1.1.tar.gz
+  md5: 6cd6ca02aa244ae268f39686991efac9
+  # git_url: https://github.com/diffpy/diffpy.srreal
+  # git_rev: master
 
 build:
   preserve_egg_dir: True
