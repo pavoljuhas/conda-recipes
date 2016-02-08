@@ -1,13 +1,11 @@
 package:
   name: srfit-sasview
-  version: !!str 3.1.1
+  version: !!str 3.1.2
 
 source:
-  fn: sasview-3.1.1.tar.gz
-  url: https://github.com/SasView/sasview/archive/v3.1.1.tar.gz
-  sha256: a52544af7c4bb86b9899e855fef3ad69fa51f5827f07db31932afe01284dd186
-  patches:
-    - srfit-sasview-setup.patch
+  fn: srfit-sasview-3.1.2.tar.gz
+  url: https://github.com/diffpy/srfit-sasview/releases/download/sfsv3.1.2/srfit-sasview-3.1.2.tar.gz
+  md5: ab165d5055198d8aefada21e8f3acac0
 
 build:
   # make it easy to see that sas package belongs to us
@@ -17,7 +15,7 @@ build:
 
   # If this is a new build for the same version, increment the build
   # number. If you do not include this key, it defaults to 0.
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -51,7 +49,7 @@ test:
     - pylint
 
 about:
-  home: http://www.sasview.org/
+  home: https://github.com/diffpy/srfit-sasview
   license: PSF
   summary: 'Selected modules from the SasView application.'
 
