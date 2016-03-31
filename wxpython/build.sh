@@ -4,11 +4,19 @@ mkdir -vp ${PREFIX}/bin;
 
 MYARCH="$(uname 2>/dev/null)"
 
-export CFLAGS="-m64 -pipe -O2 -march=x86-64 -fPIC"
-export CXXFLAGS="${CFLAGS} -std=c++11"
-export CPPFLAGS="${CFLAGS} -std=c++11"
-#export CPPFLAGS="-I${PREFIX}/include"
-#export LDFLAGS="-L${PREFIX}/lib64"
+MYCFLAGS=""
+if [[ ${ARCH} == 64 ]]; then
+    MYCFLAGS="-m64 -march=x86-64"
+fi
+
+MYCPPSTD11="-std=c++11"
+if grep -F -q 'Ubuntu 10.04.4' /etc/issue; then
+    MYCPPSTD11="-std=c++0x"
+fi
+
+export CFLAGS="${MYCFLAGS} -pipe -O2 -fPIC"
+export CXXFLAGS="${CFLAGS} ${MYCPPSTD11}"
+export CPPFLAGS="${CFLAGS} ${MYCPPSTD11}"
 
 LinuxInstallation() {
     # Build dependencies:
