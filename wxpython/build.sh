@@ -3,6 +3,7 @@
 mkdir -vp ${PREFIX}/bin;
 
 MYARCH="$(uname 2>/dev/null)"
+MYNCPU=$(( (CPU_COUNT > 8) ? 8 : CPU_COUNT ))
 
 MYCFLAGS=""
 if [[ ${ARCH} == 64 ]]; then
@@ -49,7 +50,7 @@ LinuxInstallation() {
         --with-regex=builtin \
         --with-zlib=builtin \
         --prefix="${PREFIX}" || return 1;
-    make || return 1;
+    make -j ${MYNCPU} || return 1;
     make install || return 1;
 
     pushd wxPython/;
