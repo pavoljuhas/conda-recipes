@@ -76,7 +76,3 @@ case ${MYARCH} in
         exit 1;
         ;;
 esac
-
-#POST_LINK="${PREFIX}/bin/.wxpython-post-link.sh"
-#cp -v ${RECIPE_DIR}/post-link.sh ${POST_LINK};
-#chmod -v 0755 ${POST_LINK};
