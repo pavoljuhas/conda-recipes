@@ -1,12 +1,13 @@
+{% set setupdata = load_setup_py_data() %}
+
 package:
   name: diffpy.srreal
-  ## Use __conda_version__.txt.
-  # version: "1.1a0"
+  version: {{ setupdata['version'] }}
 
 source:
-  fn: diffpy.srreal-1.1.tar.gz
-  url: https://pypi.python.org/packages/source/d/diffpy.srreal/diffpy.srreal-1.1.tar.gz
-  md5: 6cd6ca02aa244ae268f39686991efac9
+  fn: diffpy.srreal-1.1.1.tar.gz
+  url: https://pypi.python.org/packages/32/4b/1ac15843ac29543a0478ebee6cab2f2cef89913625effc8f8354a94f2bfb/diffpy.srreal-1.1.1.tar.gz
+  md5: d205fe335ef520f1c7c6f7e54d374ee7
   # git_url: https://github.com/diffpy/diffpy.srreal
   # git_rev: master
 
@@ -15,15 +16,14 @@ build:
 
   # If this is a new build for the same version, increment the build
   # number. If you do not include this key, it defaults to 0.
-  number: 1
+  # number: 0
 
 requirements:
   build:
     - python
     - setuptools
     - numpy 1.9.2
-    - libdiffpy 1.3.1
-    - libobjcryst 2015.1.2
+    - libdiffpy >=1.3.2,1.3.*
     - pycifrw
     - diffpy.structure
     - scons
@@ -32,7 +32,7 @@ requirements:
     - python
     - setuptools
     - numpy >=1.9.2
-    - libdiffpy 1.3.1
+    - libdiffpy >=1.3.2,1.3.*
     - pycifrw
     - diffpy.structure
     - pyobjcryst 2.0*
@@ -45,9 +45,26 @@ test:
     - diffpy.srreal
     - diffpy.srreal.tests
 
-  # commands:
-    # You can put test commands to be run here.  Use this to test that the
-    # entry points work.
+  commands:
+    # Test if any module can be imported as the first one.
+    - python -s -c "import diffpy.srreal.atomradiitable"
+    - python -s -c "import diffpy.srreal.attributes"
+    - python -s -c "import diffpy.srreal.bondcalculator"
+    - python -s -c "import diffpy.srreal.bvparameterstable"
+    - python -s -c "import diffpy.srreal.bvscalculator"
+    - python -s -c "import diffpy.srreal.eventticker"
+    - python -s -c "import diffpy.srreal.overlapcalculator"
+    - python -s -c "import diffpy.srreal.pairquantity"
+    - python -s -c "import diffpy.srreal.pdfbaseline"
+    - python -s -c "import diffpy.srreal.pdfcalculator"
+    - python -s -c "import diffpy.srreal.pdfenvelope"
+    - python -s -c "import diffpy.srreal.peakprofile"
+    - python -s -c "import diffpy.srreal.peakwidthmodel"
+    - python -s -c "import diffpy.srreal.scatteringfactortable"
+    - python -s -c "import diffpy.srreal.srreal_ext"
+    - python -s -c "import diffpy.srreal.structureadapter"
+    - python -s -c "import diffpy.srreal.structureconverters"
+    - python -s -c "import diffpy.srreal.version"
 
 
   # You can also put a file called run_test.py in the recipe that will be run
