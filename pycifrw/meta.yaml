@@ -4,13 +4,18 @@ package:
 
 
 source:
-  fn: PyCifRW-4.2.1.tar.gz
-  url: https://pypi.python.org/packages/c7/7b/0dd9313b022067dfd270ced6c7d3e228499ca91d90f056ecb84afd8fe33b/PyCifRW-4.2.1.tar.gz
-  md5: 7a0f9ff93186f75ea0793c5c389ab5b5
+  # Python 2
+  fn: PyCifRW-4.2.1.tar.gz  [py2k]
+  url: https://pypi.python.org/packages/c7/7b/0dd9313b022067dfd270ced6c7d3e228499ca91d90f056ecb84afd8fe33b/PyCifRW-4.2.1.tar.gz  [py2k]
+  md5: 7a0f9ff93186f75ea0793c5c389ab5b5  [py2k]
 
-#  patches:
-   # List any patch files here
-   # - fix.patch
+  # Python 3
+  git_url: https://bitbucket.org/jamesrhester/pycifrw.git  [py3k]
+  git_rev: f44c0d0d6a5811125fc3b5f578277fc6391feda1  [py3k]
+
+  patches:
+    - py3-fix-backticks.patch  [py3k]
+    - py3-fix-makefile.patch   [py3k]
 
 # build:
   #preserve_egg_dir: True

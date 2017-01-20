@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [[ $PY3K == 1 ]]; then
+    make sources drel
+fi
+
 $PYTHON setup.py install
 
 # Add more build steps here, if they are necessary.

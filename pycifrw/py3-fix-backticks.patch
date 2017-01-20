@@ -1,0 +1,647 @@
+# This diff contains the following commits:
+#
+# 2d69947 Fix mistyped separator in print call.
+# b232f04 Fixed mixed Unix and DOS line endings.
+# 487a981 Purge obsolete backup file.
+# efd5339 Convert backticks to repr of that expression.
+# 9ae77ac Comment out printing of file URL.
+
+diff --git a/README.md b/README.md
+index 28928ff..51bdd1b 100644
+--- a/README.md
++++ b/README.md
+@@ -1,82 +1,82 @@
+-PyCIFRW Readme
+---------------
+-
+-Introduction
+-------------
+-
+-PyCIFRW provides support for reading and writing CIF (Crystallographic
+-Information Format) files using Python.  It was developed at the
+-Australian National Beamline Facility (ANBF), run by the Australian
+-Synchrotron Research Program (ASRP), as part of a larger project to
+-provide CIF input/output capabilities for data collection.  It is
+-now (Jan 2015) maintained and developed within the Australian Nuclear Science and
+-Technology Organisation (ANSTO).
+-
+-Conformance
+------------
+-
+-The CIF 1.1 and 2.0 working specifications were used as a reference,
+-
+-PyCifRW has been tested on the IUCr sample CIF1.1 trip files located at
+-http://www.iucr.org/iucr-top/cif/developers/trip and fails or 
+-successfully reads as it is supposed to (note that `ciftest5` contains
++PyCIFRW Readme
++--------------
++
++Introduction
++------------
++
++PyCIFRW provides support for reading and writing CIF (Crystallographic
++Information Format) files using Python.  It was developed at the
++Australian National Beamline Facility (ANBF), run by the Australian
++Synchrotron Research Program (ASRP), as part of a larger project to
++provide CIF input/output capabilities for data collection.  It is
++now (Jan 2015) maintained and developed within the Australian Nuclear Science and
++Technology Organisation (ANSTO).
++
++Conformance
++-----------
++
++The CIF 1.1 and 2.0 working specifications were used as a reference,
++
++PyCifRW has been tested on the IUCr sample CIF1.1 trip files located at
++http://www.iucr.org/iucr-top/cif/developers/trip and fails or
++successfully reads as it is supposed to (note that `ciftest5` contains
+ characters now forbidden in CIFs). For CIF2.0, only characters in the
+-Basic Multilingual Plane are supported due to limitations of Python 2.   
+-
+-Supported Platforms
+--------------------
+-
+-PyCIFRW is written entirely in Python.  While this makes parsing of large
+-CIF files rather slow, it should run wherever Python runs.  The latest version
+-has been tested on Linux and will soon be tested on Windows 7.
+-
+-The source code of a C extension module is also included in the distribution.
+-This module accelerates CIF file reading. From time to time 
+-system-dependent installation packages are generated containing precompiled
+-versions of this module. 
+-
+-Installation
+-------------
+-
+-See file [INSTALLATION](https://bitbucket.org/jamesrhester/pycifrw/src/efd90c5e6dec7caf1e61fac68492a7fd66661d97/INSTALLATION?at=development).
+-
+-License
+-----------
+-
+-PyCIFRW is made available using the Python 2.0 license.  The full text is [here](https://bitbucket.org/jamesrhester/pycifrw/src/efd90c5e6dec7caf1e61fac68492a7fd66661d97/LICENSE?at=development)
+-
+-Use
+----
+-
+-See the various files in the docs directory for details of the interface.  
+-Essentially, CIF files look like python dictionaries, with each 
+-entry in the dictionary corresponding to a data block.  The blocks 
+-themselves are also dictionaries, with each data name being a 
+-single entry in the dictionary, so for example,
+-`cf['si_std']['_diffrn_meas_wavelength']` will return the value of 
+-`_diffrn_meas_wavelength` in the data block named `si_std` of the Cif file object
+-`cf`.
+-
+-Example
+--------
+-
+-To read in a CIF:
+-    
+-    from CifFile import CifFile
+-    cf = CifFile.ReadCif('jun_01_2.cif')
+-
+-to access information in a CIF
+-
+-    wav = cf['si_std']['_diffrn_meas_wavelength']
+-
+-to set a value
+-
+-    cf['si_std']['_diffrn_meas_wavelength'] = 1.54
+-
+-
+-Extra programs
+---------------
+-
+-The "Programs" directory contains program "validate_cif.py" which
+-validates a data files against data dictionaries.  Execute this file
++Basic Multilingual Plane are supported due to limitations of Python 2.
++
++Supported Platforms
++-------------------
++
++PyCIFRW is written entirely in Python.  While this makes parsing of large
++CIF files rather slow, it should run wherever Python runs.  The latest version
++has been tested on Linux and will soon be tested on Windows 7.
++
++The source code of a C extension module is also included in the distribution.
++This module accelerates CIF file reading. From time to time
++system-dependent installation packages are generated containing precompiled
++versions of this module.
++
++Installation
++------------
++
++See file [INSTALLATION](https://bitbucket.org/jamesrhester/pycifrw/src/efd90c5e6dec7caf1e61fac68492a7fd66661d97/INSTALLATION?at=development).
++
++License
++----------
++
++PyCIFRW is made available using the Python 2.0 license.  The full text is [here](https://bitbucket.org/jamesrhester/pycifrw/src/efd90c5e6dec7caf1e61fac68492a7fd66661d97/LICENSE?at=development)
++
++Use
++---
++
++See the various files in the docs directory for details of the interface.
++Essentially, CIF files look like python dictionaries, with each
++entry in the dictionary corresponding to a data block.  The blocks
++themselves are also dictionaries, with each data name being a
++single entry in the dictionary, so for example,
++`cf['si_std']['_diffrn_meas_wavelength']` will return the value of
++`_diffrn_meas_wavelength` in the data block named `si_std` of the Cif file object
++`cf`.
++
++Example
++-------
++
++To read in a CIF:
++
++    from CifFile import CifFile
++    cf = CifFile.ReadCif('jun_01_2.cif')
++
++to access information in a CIF
++
++    wav = cf['si_std']['_diffrn_meas_wavelength']
++
++to set a value
++
++    cf['si_std']['_diffrn_meas_wavelength'] = 1.54
++
++
++Extra programs
++--------------
++
++The "Programs" directory contains program "validate_cif.py" which
++validates a data files against data dictionaries.  Execute this file
+ without arguments for a help message.
+diff --git a/TestDrel.py b/TestDrel.py
+index 7f9e367..82a9826 100644
+--- a/TestDrel.py
++++ b/TestDrel.py
+@@ -98,13 +98,13 @@ class SingleSimpleStatementTestCase(unittest.TestCase):
+         if instring[-1]!="\n":
+            instring += '\n'
+         res = self.parser.parse(instring,debug=debug,lexer=self.lexer)
+-        if debug: print("%s\n -> \n%s \n" % (instring,`res`))
++        if debug: print("%s\n -> \n%r \n" % (instring, res))
+         realfunc = py_from_ast.make_python_function(res,"myfunc",'_a.b',have_sn=False,
+                                                     cif_dic=self.dic)
+         if debug: print("-> %s" % realfunc)
+         exec(realfunc)
+         answer = myfunc(self)
+-        if debug: print(" -> %s" % `answer`)
++        if debug: print(" -> {!r}".format(answer))
+         if not array:
+             self.failUnless(answer == right_value)
+         else:
+@@ -301,7 +301,7 @@ class SimpleCompoundStatementTestCase(unittest.TestCase):
+        if instring[-1]!="\n":
+            instring += "\n"   # correct termination
+        res = self.parser.parse(instring,debug=debug,lexer=self.lexer)
+-       if debug: print("%s\n -> \n%s \n" % (instring,`res`))
++       if debug: print("%s\n -> \n%r \n" % (instring, res))
+        realfunc = py_from_ast.make_python_function(res,"myfunc",varname,have_sn=False,
+                                                    cif_dic=self.dic)
+        if debug: print("-> %s" % realfunc)
+@@ -408,7 +408,7 @@ class SimpleCompoundStatementTestCase(unittest.TestCase):
+        # print "Function -> \n" + realfunc
+        exec(realfunc)
+        retval = Closest(0.2,0.8,None)
+-       print('Closest 0.2,0.8 returns ' + ",".join([`retval[0]`,`retval[1]`]))
++       print('Closest 0.2,0.8 returns {!r},{!r}'.format(retval[0], retval[1]))
+        self.failUnless(retval == StarList([1.2,1]))
+ 
+ class MoreComplexTestCase(unittest.TestCase):
+@@ -461,7 +461,7 @@ class MoreComplexTestCase(unittest.TestCase):
+                                                    cif_dic = self.dic)
+        exec(realfunc)
+        b = myfunc(self)
+-       print("if returns " + `b`)
++       print("if returns {!r}".format(b))
+        self.failUnless(b==('B', 'Possible mismatch between cell angles and cell setting'))
+ 
+ 
+@@ -522,7 +522,7 @@ class WithDictTestCase(unittest.TestCase):
+        exec(realfunc)
+        #
+        atmass = myfunc(self.testblock)
+-       print('test value now %s' % `atmass`)
++       print('test value now {!r}'.format(atmass))
+        self.failUnless(atmass == [120,280,240])
+ 
+    def test_Lists(self):
+@@ -549,10 +549,10 @@ class WithDictTestCase(unittest.TestCase):
+                 loopable=loop_cats,have_sn=False,depends=True,cif_dic=testdic)
+        print('Simple function becomes:')
+        print(realfunc)
+-       print('Depends on: ' + `dependencies`)
++       print('Depends on: {!r}'.format(dependencies))
+        exec(realfunc in globals())
+        b = myfunc(self.testblock)
+-       print("subscription returns " + `b` )
++       print("subscription returns {!r}".format(b))
+ 
+    def test_with_stmt(self):
+        """Test what comes out of a simple flow statement, including
+@@ -591,7 +591,7 @@ class WithDictTestCase(unittest.TestCase):
+        print("With statement for looped category -> \n" + realfunc)
+        exec(realfunc)
+        atmass = myfunc(self.testblock)
+-       print('test value now %s' % `atmass`)
++       print('test value now {!r}'.format(atmass))
+        self.failUnless(atmass == [120,280,240])
+ 
+    def test_subscription(self):
+@@ -601,11 +601,11 @@ class WithDictTestCase(unittest.TestCase):
+        """
+        loopable_cats = {"model_site":["id",["id","symop"]]}
+        res = self.parser.parse(teststrg,lexer=self.lexer)
+-       print(`res`)
++       print(repr(res))
+        realfunc,dependencies = py_from_ast.make_python_function(res,"myfunc","_model_site.symop",
+                                                                 loopable=loopable_cats,depends=True,
+                                                                 cif_dic=testdic)
+-       print(realfunc, `dependencies`)
++       print(realfunc, repr(dependencies))
+        self.failUnless(dependencies == set(['_model_site.id']))
+ 
+    def test_current_row(self):
+@@ -620,7 +620,7 @@ class WithDictTestCase(unittest.TestCase):
+        print("Current row statement -> \n" + realfunc)
+        exec(realfunc)
+        rownums = myfunc(self.testblock)
+-       print('row id now %s' % `rownums`)
++       print('row id now {!r}'.format(rownums))
+        self.failUnless(rownums == [1,2,3])
+ 
+    def test_loop_statement(self):
+@@ -672,7 +672,7 @@ class WithDictTestCase(unittest.TestCase):
+        ast = self.parser.parse(teststrg+"\n",lexer=self.lexer)
+        realfunc = py_from_ast.make_python_function(ast,"myfunc","_refln.F_complex",loopable=loopable_cats,
+                                                    cif_dic=testdic)
+-       print("Incoming AST: " + `ast`)
++       print("Incoming AST: {!r}".format(ast))
+        print("F_complex statement -> \n" + realfunc)
+        exec(realfunc)
+ 
+@@ -713,7 +713,7 @@ class WithDictTestCase(unittest.TestCase):
+        exec(realfunc)
+        self.testblock.assign_dictionary(testdic)
+        b = myfunc(self.testblock)
+-       print('symops are now ' + `b`)
++       print('symops are now {!r}'.format(b))
+        self.failUnless(b[1] == '1_555')
+ 
+ if __name__=='__main__':
+diff --git a/pycifrw/CifFile.nw b/pycifrw/CifFile.nw
+index 5f55ae8..24a720a 100644
+--- a/pycifrw/CifFile.nw
++++ b/pycifrw/CifFile.nw
+@@ -1841,7 +1841,7 @@ def validate_item_enum(self,item_name,item_value):
+     enum_list.append(".")   #default value
+     enum_list.append("?")   #unknown
+     item_values = listify(item_value)
+-    #print("Enum check: %s in %s" % (`item_values`,`enum_list`))
++    #print("Enum check: {!r} in {!r}".format(item_values, enum_list))
+     check_all = [a for a in item_values if a not in enum_list]
+     if len(check_all)>0: return {"result":False,"bad_values":check_all}
+     else: return {"result":True}
+@@ -2040,7 +2040,7 @@ def get_alternates(self,main_name,exclusive_only=False):
+     # now do the alias thing
+     alias_names = listify(self[main_name].get("_item_aliases.alias_name",[]))
+     alt_names.extend(alias_names)
+-    # print("Alternates for %s: %s" % (main_name,`alt_names`))
++    # print("Alternates for {}: {!r}".format(main_name, alt_names))
+     return alt_names
+ 
+ @ Some checks require access to the entire data block.  These functions
+@@ -2112,11 +2112,11 @@ def validate_parent(self,item_name,item_value,whole_block,provisional_items={},g
+         child_values = [item_value]
+     else: child_values = item_value[:]    #copy for safety
+     # track down the parent
+-    # print("Looking for %s parent item %s in %s" % (item_name,parent_item,`whole_block`))
++    # print("Looking for {} parent item {} in {!r}".format(item_name, parent_item, whole_block))
+     # if globals contains the parent values, we are doing a DDL2 dictionary, and so
+     # we have collected all parent values into the global block - so no need to search
+     # for them elsewhere.
+-    # print("Looking for %s" % `parent_item`)
++    # print("Looking for {!r}".format(parent_item))
+     parent_values = globals.get(parent_item)
+     if not parent_values:
+         parent_values = provisional_items.get(parent_item,whole_block.get(parent_item))
+@@ -2137,8 +2137,8 @@ def validate_parent(self,item_name,item_value,whole_block,provisional_items={},g
+             parent_values = globals.get(parent_item)
+     if isinstance(parent_values,str):
+         parent_values = [parent_values]
+-    #print("Checking parent %s against %s, values %s/%s" % (parent_item,
+-    #                                          item_name,`parent_values`,`child_values`))
++    #print("Checking parent %s against %s, values %r/%r" % (parent_item,
++    #                                          item_name, parent_values, child_values))
+     missing = self.check_parent_child(parent_values,child_values)
+     if len(missing) > 0:
+         return {"result":False,"bad_values":missing,"parent":parent_item}
+@@ -2175,8 +2175,8 @@ def validate_child(self,item_name,item_value,whole_block,provisional_items={},gl
+         else:  continue
+         if isinstance(child_values,str):
+             child_values = [child_values]
+-            # print("Checking child %s against %s, values %s/%s" % (child_item,
+-            #       item_name, `child_values`, `parent_values`))
++            # print("Checking child %s against %s, values %r/%r" % (child_item,
++            #       item_name, child_values, parent_values))
+         missing = self.check_parent_child(parent_values,child_values)
+         if len(missing)>0:
+             return {"result":False,"bad_values":missing,"child":child_item}
+@@ -2257,7 +2257,7 @@ def validate_uniqueness(self,item_name,item_value,whole_block,provisional_items=
+     if category == None:
+         print("No category found for %s" % item_name)
+         return {"result":None}
+-    # print("Category %s for item %s" % (`category`, item_name))
++    # print("Category {!r} for item {}".format(category, item_name))
+     catentry = self.cat_map[category]
+     # we make a copy in the following as we will be removing stuff later!
+     unique_i = self[catentry].get("_category_key.name",[])[:]
+@@ -2267,7 +2267,7 @@ def validate_uniqueness(self,item_name,item_value,whole_block,provisional_items=
+         return {"result":None}
+     if isinstance(item_value,str):  #not looped
+         return {"result":None}
+-    # print("Checking %s -> %s -> %s ->Unique: " % (item_name,category,catentry) + `unique_i`)
++    # print("Checking %s -> %s -> %s ->Unique: %r" % (item_name,category,catentry, unique_i))
+     # check that we can't optimize by not doing this check
+     if self.optimize:
+         if unique_i in self.done_keys:
+@@ -2296,11 +2296,11 @@ def validate_uniqueness(self,item_name,item_value,whole_block,provisional_items=
+     # so could be fooled if you think that '1.' and '1' are
+     # identical
+     for i in range(len(item_value)):
+-        #print("Value no. %d" % i, end="\n")
++        #print("Value no. %d" % i, end=" ")
+         this_entry = item_value[i]
+         for j in range(len(other_data)):
+             this_entry = " ".join([this_entry,other_data[j][i]])
+-        #print("Looking for %s in %s: " % (`this_entry`,`val_list`))
++        #print("Looking for {!r} in {!r}: ".format(this_entry, val_list))
+         if this_entry in val_list:
+             return {"result":False,"bad_values":this_entry}
+         val_list.append(this_entry)
+@@ -2336,7 +2336,7 @@ def validate_mandatory_category(self,whole_block):
+     mand_cats = [a for a in self.keys() if self[a].get("_category.mandatory_code","no")=="yes"]
+     # map to actual ids
+     catlist = list(self.cat_map.items())
+-    # print("Mandatory categories - %s" % `mand_cats`)
++    # print("Mandatory categories - {!r}".format(mand_cats))
+     all_keys = whole_block.keys() #non-save block keys
+     for mand_cat in mand_cats:
+         cat_id = [a for a in catlist if a[1]==mand_cat][0][0]
+@@ -2566,7 +2566,7 @@ def transform_drel(self):
+             self[derivable].overwrite = True
+             self[derivable]["_method.py_expression"] = all_methods
+             self[derivable].overwrite = save_overwrite
+-        #print("Final result:\n " + `self[derivable]["_method.py_expression"]`)
++        #print("Final result:\n " + repr(self[derivable]["_method.py_expression"]))
+ 
+ @ Drel functions are all stored in category 'functions' in our final dictionary.  We want to
+ convert them to executable python code and store them in an appropriate namespace which we
+@@ -2595,7 +2595,7 @@ def add_drel_funcs(self):
+         #print('dREL library function ->\n' + py_function)
+         global_table = globals()
+         exec(py_function, global_table)    #add to namespace
+-    #print('Globals after dREL functions added:' + `globals()`)
++    #print('Globals after dREL functions added:' + repr(globals()))
+     self.ddlm_functions = globals()  #for outside access
+ 
+ @ When a dictionary is available during CIF file access, we can resolve a missing dataname in
+@@ -2789,7 +2789,7 @@ for one_func in the_funcs:
+     print('Executing function for %s:' % key)
+     #print(one_func)
+     exec(one_func, globals())  #will access dREL functions, puts "pyfunc" in scope
+-    # print('in following global environment: ' + `global_table`)
++    # print('in following global environment: ' + repr(global_table))
+     stored_setting = cifdata.provide_value
+     cifdata.provide_value = True
+     try:
+@@ -2804,7 +2804,7 @@ for one_func in the_funcs:
+         cifdata.provide_value = stored_setting
+     if result is not None:
+         break
+-    #print("Function returned %s" % `result`)
++    #print("Function returned {!r}".format(result))
+ 
+ @ \subsection{Creating categories}
+ 
+@@ -3307,13 +3307,13 @@ def run_data_checks(self,verbose=False):
+     self.fulldic.optimize_off()
+     all_keys = list(self.v_result.keys()) #dictionary will change
+     for test_key in all_keys:
+-        #print("%s: %s" % (test_key,`self.v_result[test_key]`))
++        #print("%s: %r" % (test_key, self.v_result[test_key]))
+         self.v_result[test_key] = [a for a in self.v_result[test_key] if a[1]["result"]==False]
+         if len(self.v_result[test_key]) == 0:
+             del self.v_result[test_key]
+     isvalid = len(self.v_result)==0
+     #if not isvalid:
+-    #    print("Baddies:" + `self.v_result`)
++    #    print("Baddies: {!r}".format(self.v_result))
+     return isvalid,self.v_result
+ 
+ @ Report back.  We summarize the contents of v_result.  This routine
+@@ -3346,7 +3346,7 @@ def single_item_check(self,item_name,item_value):
+     baddies = [a for a in result[item_name] if a[1]["result"]==False]
+     # if even one false one is found, this should trigger
+     isvalid = (len(baddies) == 0)
+-    # if not isvalid: print("Failures for %s:" % item_name + `baddies`)
++    # if not isvalid: print("Failures for {}: {!r}".format(item_name, baddies))
+     return isvalid,baddies
+ 
+ def loop_item_check(self,loop_names):
+@@ -3358,7 +3358,7 @@ def loop_item_check(self,loop_names):
+     baddies = [a for a in result[in_dic_names[0]] if a[1]["result"]==False]
+     # if even one false one is found, this should trigger
+     isvalid = (len(baddies) == 0)
+-    # if not isvalid: print("Failures for %s:" % `loop_names` + `baddies`)
++    # if not isvalid: print("Failures for {}: {!r}".format(loop_names, baddies))
+     return isvalid,baddies
+ 
+ def global_item_check(self,item_name,item_value,provisional_items={}):
+@@ -3370,7 +3370,7 @@ def global_item_check(self,item_name,item_value,provisional_items={}):
+     baddies = [a for a in result[item_name] if a[1]["result"] is False]
+     # if even one false one is found, this should trigger
+     isvalid = (len(baddies) == 0)
+-    # if not isvalid: print("Failures for %s:" % item_name + `baddies`)
++    # if not isvalid: print("Failures for {}: {!r}".format(item_name, baddies))
+     return isvalid,baddies
+ 
+ def remove_global_item_check(self,item_name):
+@@ -3381,7 +3381,7 @@ def remove_global_item_check(self,item_name):
+     baddies = [a for a in result[item_name] if a[1]["result"]==False]
+     # if even one false one is found, this should trigger
+     isvalid = (len(baddies) == 0)
+-    # if not isvalid: print("Failures for %s:" % item_name + `baddies`)
++    # if not isvalid: print("Failures for {}: {!r}".format(item_name, baddies))
+     return isvalid,baddies
+ 
+ @ We need to override the base class methods here to prevent addition of an
+@@ -3817,7 +3817,7 @@ def run_data_checks(check_block,fulldic,block_scope='Item'):
+         if len(v_result[test_key]) == 0:
+             del v_result[test_key]
+     # if even one false one is found, this should trigger
+-    # print("Baddies:" + `v_result`)
++    # print("Baddies: {!r}".format(v_result))
+     isvalid = len(v_result)==0
+     return isvalid,v_result
+ 
+@@ -3848,7 +3848,7 @@ def get_number_with_esd(numstring):
+     our_match = re.match(numb_re,numstring)
+     if our_match:
+         a,base_num,b,c,dad,dbd,esd,exp,q,dot = our_match.groups()
+-        # print("Debug: %s -> %s" % (numstring, `our_match.groups()`))
++        # print("Debug: {} -> {!r}".format(numstring, our_match.groups()))
+     else:
+         return None,None
+     if dot or q: return None,None     #a dot or question mark
+diff --git a/pycifrw/Programs/star2_to_cif2.py b/pycifrw/Programs/star2_to_cif2.py
+index 93e7834..734d5ba 100644
+--- a/pycifrw/Programs/star2_to_cif2.py
++++ b/pycifrw/Programs/star2_to_cif2.py
+@@ -32,8 +32,8 @@ if __name__ == "__main__":
+ ##############################################################################"""
+ 
+ 
+-    # print('Master template:' + `incif.dic_as_cif.master_template`)
+-    print('check: ' + `incif.recurse_child_list('enumeration')`)
++    # print('Master template: {!r}'.format(incif.dic_as_cif.master_template))
++    print('check: {!r}'.format(incif.recurse_child_list('enumeration')))
+     of = open(outfile,"w")
+     of.write(incif.WriteOut(comment=comment,saves_after='_description.text'))
+     of.close()
+diff --git a/pycifrw/StarFile.nw b/pycifrw/StarFile.nw
+index 8fd6e0b..6168b60 100644
+--- a/pycifrw/StarFile.nw
++++ b/pycifrw/StarFile.nw
+@@ -1040,7 +1040,7 @@ def ReadStar(filename,prepared = None, maxlength=-1,
+             my_uri = urlunparse(newrel)
+         else:
+             my_uri = urlunparse(relpath)
+-        print("Full URL is: " + my_uri)
++        # print("Full URL is: " + my_uri)
+         filestream = urlopen(my_uri)
+         text = filestream.read().decode('utf-8')
+         filestream.close()
+diff --git a/pycifrw/drel/drel_ast_yacc.py b/pycifrw/drel/drel_ast_yacc.py
+index 44b097e..57c1dc9 100644
+--- a/pycifrw/drel/drel_ast_yacc.py
++++ b/pycifrw/drel/drel_ast_yacc.py
+@@ -28,7 +28,7 @@ def p_input(p):
+          so_far = p[1][1]
+          new_statements = p[2][1]
+          p[0] = ["STATEMENTS",p[1][1] + p[2][1]]
+-         #print 'input now ' + `p[0]`
++         #print('input now {!r}'.format(p[0]))
+ 
+ # We distinguish between compound statements and
+ # small statements. Small statements may be
+@@ -196,7 +196,7 @@ def p_power(p):
+         p[0] = p[1]
+     else:
+         p[0] = ["MATHOP","**",p[1] , p[3]]
+-    # print 'At power: p[0] is %s' % `p[0]`
++    # print('At power: p[0] is {!r}'.format(p[0]))
+ 
+ def p_primary(p):
+     '''primary : atom
+@@ -251,7 +251,7 @@ def p_parenth_form(p):
+     if len(p) == 3: p[0] = ["GROUP"]
+     else:
+         p[0] = ["GROUP",p[2]]
+-    # print 'Parens: %s' % `p[0]`
++    # print('Parens: {!r}'.format(p[0]))
+ 
+ def p_string_conversion(p):
+     '''string_conversion : "`" testlist_star_expr "`" '''
+@@ -270,7 +270,7 @@ def p_list_display(p):
+ def p_listmaker(p):
+     '''listmaker : expression listmaker2  '''
+     p[0] = [p[1]] + p[2]
+-    # print 'listmaker: %s' % `p[0]`
++    # print('listmaker: {!r}'.format(p[0]))
+ 
+ def p_listmaker2(p):
+     '''listmaker2 : "," maybe_nline expression 
+@@ -384,7 +384,7 @@ def p_call(p):
+         p[0] = ["FUNC_CALL",p[1],[]]
+     else:
+         p[0] = ["FUNC_CALL",p[1],p[3]]
+-    #print "Function call: %s" % `p[0]`
++    #print("Function call: {!r}".format(p[0]))
+ 
+ # These are the arguments to a call, not a definition
+ 
+@@ -403,7 +403,7 @@ def p_func_arg(p):
+ def p_fancy_drel_assignment_stmt(p):
+     '''fancy_drel_assignment_stmt : ID OPEN_PAREN dotlist CLOSE_PAREN ''' 
+     p[0] = ["FANCY_ASSIGN",p[1],p[3]]
+-#    print "Fancy assignment -> " + `p[0]`
++#    print("Fancy assignment -> {!r}".format(p[0]))
+ 
+ # Something made up specially for drel.  A newline is OK between assignments
+ 
+diff --git a/pycifrw/tests/C13H2203_with_errors.cif.bak b/pycifrw/tests/C13H2203_with_errors.cif.bak
+deleted file mode 100644
+index 4441422..0000000
+diff --git a/pycifrw/tests/yappsrt.py b/pycifrw/tests/yappsrt.py
+index 6f56ab3..cc7d403 100644
+--- a/pycifrw/tests/yappsrt.py
++++ b/pycifrw/tests/yappsrt.py
+@@ -20,8 +20,9 @@ class SyntaxError(Exception):
+         self.pos = pos
+         self.msg = msg
+     def __repr__(self):
+-        if self.pos < 0: return "#<syntax-error>"
+-        else: return "SyntaxError[@ char " + `self.pos` + ": " + self.msg + "]"
++        emsg = ("#<syntax-error>" if self.pos < 0 else
++                "SyntaxError[@ char {!r}: {}]".format(self.pos, self.msg))
++        return emsg
+ 
+ class NoMoreTokens(Exception):
+     """Another exception object, for when we run out of tokens"""
+@@ -85,7 +86,7 @@ class Scanner:
+         """Print the last 10 tokens that have been scanned in"""
+         output = ''
+         # for t in self.tokens[-10:]:
+-        #     output = '%s\n  (@%s)  %s  =  %s' % (output,t[0],t[2],`t[3]`)
++        #     output = '%s\n  (@%s)  %s  =  %r' % (output, t[0], t[2], t[3])
+         return output
+ 
+     def compiled_scan(self,restrict):
+@@ -169,7 +170,7 @@ def print_error(input, err, scanner):
+     p = err.pos
+     # Figure out the line number
+     line = count(input[:p], '\n')
+-    print(err.msg+" on line "+`line+1`+":")
++    print(err.msg, " on line ", line + 1, ":", sep='')
+     # Now try printing part of the line
+     text = input[max(p-80,0):p+80]
+     p = p - max(p-80,0)
+diff --git a/pycifrw/unicode-tests/runtests.py b/pycifrw/unicode-tests/runtests.py
+index 218e64c..a53c6e2 100644
+--- a/pycifrw/unicode-tests/runtests.py
++++ b/pycifrw/unicode-tests/runtests.py
+@@ -17,17 +17,17 @@ def runtests(scantype):
+         except:
+             if testresult == 'OK':
+                 print("%s causes error where none expected" % filename)
+-                print("%s\n%s" % (`sys.exc_type`,sys.exc_value))
++                print("%r\n%s" % (sys.exc_type, sys.exc_value))
+             else:
+                 if sys.exc_type in testresult:
+                     print("%s passes" % filename)
+                 else:
+-                    print("Unexpected exception %s for %s" % (`sys.exc_type`,filename))
++                    print("Unexpected exception %r for %s" % (sys.exc_type, filename))
+         else:     #no exception
+             if testresult == 'OK':
+                 print("%s passes" % filename)
+             else:
+-                print("%s: Expected %s, got nothing" % (filename,`testresult`))
++                print("%s: Expected %r, got nothing" % (filename, testresult))
+ if __name__ == "__main__":
+     print("Testing interpreted tokenizer")
+     runtests("standard")
