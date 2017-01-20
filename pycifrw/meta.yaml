@@ -1,12 +1,13 @@
 package:
   name: pycifrw
-  version: !!str 4.1.1
+  version: !!str 4.2.1
 
 
 source:
-  fn: PyCifRW-4.1.1.tar.gz
-  url: https://pypi.python.org/packages/source/P/PyCifRW/PyCifRW-4.1.1.tar.gz
-  md5: 2435f47a1a7a935d43c8402d8f4339d5
+  fn: PyCifRW-4.2.1.tar.gz
+  url: https://pypi.python.org/packages/c7/7b/0dd9313b022067dfd270ced6c7d3e228499ca91d90f056ecb84afd8fe33b/PyCifRW-4.2.1.tar.gz
+  md5: 7a0f9ff93186f75ea0793c5c389ab5b5
+
 #  patches:
    # List any patch files here
    # - fix.patch
