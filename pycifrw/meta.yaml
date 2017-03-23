@@ -1,56 +1,53 @@
-package:
-  name: pycifrw
-  version: !!str 4.2.1
+{% set name = "PyCifRW" %}
+{% set version = "4.3" %}
+{% set sha256 = "3b19e80278b40ebe00ad49a7dd8813007fbdc7a9a43fd3377e404ac0bcbcd3c3" %}
 
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  # Python 2
-  fn: PyCifRW-4.2.1.tar.gz  [py2k]
-  url: https://pypi.python.org/packages/c7/7b/0dd9313b022067dfd270ced6c7d3e228499ca91d90f056ecb84afd8fe33b/PyCifRW-4.2.1.tar.gz  [py2k]
-  md5: 7a0f9ff93186f75ea0793c5c389ab5b5  [py2k]
-
-  # Python 3
-  git_url: https://bitbucket.org/jamesrhester/pycifrw.git  [py3k]
-  git_rev: a77aed7a8ba3e6357668020ba7f4abd7610a0824  [py3k]
-
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
 
 build:
-  # If this is a new build for the same version, increment the build
-  # number. If you do not include this key, it defaults to 0.
-  number: 1
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
   build:
     - python
     - setuptools
-
+    - toolchain
   run:
     - python
 
 test:
-  # Python imports
   imports:
     - CifFile.CifFile
     - CifFile.StarFile
     - CifFile.StarScan
 
-  #commands:
-    # You can put test commands to be run here.  Use this to test that the
-    # entry points work.
-
-
-  # You can also put a file called run_test.py in the recipe that will be run
-  # at test time.
-
-  # requires:
-    # Put any additional test requirements here.  For example
-    # - nose
-
 about:
   home: https://bitbucket.org/jamesrhester/pycifrw/overview
-  license: Python Software Foundation License
+  license: PSF-2-like
+  license_family: other
   license_file: LICENSE
-  summary: 'CIF/STAR file support for Python'
+  summary: 'CIF file support for Python'
 
-# See http://docs.continuum.io/conda/build.html
-# for more information about meta.yaml.
+  description: |
+    PyCIFRW provides support for reading and writing CIF (Crystallographic
+    Information Format) files using Python. It was developed at the Australian
+    National Beamline Facility (ANBF), run by the Australian Synchrotron
+    Research Program (ASRP), as part of a larger project to provide CIF
+    input/output capabilities for data collection. It is now (Mar 2017)
+    maintained and developed within the Australian Nuclear Science and
+    Technology Organisation (ANSTO).
+  doc_url: https://bitbucket.org/jamesrhester/pycifrw/overview
+  dev_url: https://bitbucket.org/jamesrhester/pycifrw/overview
+
+extra:
+  recipe-maintainers:
+    - CJ-Wright
+    - pavoljuhas
