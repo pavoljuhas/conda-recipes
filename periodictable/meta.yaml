@@ -30,16 +30,14 @@ test:
     - periodictable
     - periodictable.density
 
-  #commands:
-    # You can put test commands to be run here.  Use this to test that the
-    # entry points work.
+  source_files:
+    - test
 
-  # You can also put a file called run_test.py in the recipe that will be run
-  # at test time.
+  commands:
+    - nosetests -v -w test
 
-  # requires:
-    # Put any additional test requirements here.  For example
-    # - nose
+  requires:
+    - nose
 
 about:
   home: http://www.reflectometry.org/danse/elements.html
