@@ -1,52 +1,38 @@
+{% set name = "periodictable" %}
+{% set version = "1.4.1" %}
+{% set sha256 = "f42e66f6efca33caec4f27dad8d6a6d4e59da147ecf5adfce152cb84e7bd160b" %}
+
 package:
-  name: periodictable
-  version: !!str 1.4.1
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  fn: periodictable-1.4.1.tar.gz
-  url: https://pypi.python.org/packages/source/p/periodictable/periodictable-1.4.1.tar.gz
-  md5: 7246b63cc0b6b1be6e86b6616f9e866e
-#  patches:
-   # List any patch files here
-   # - fix.patch
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
 
 build:
-  number: 1
-  #preserve_egg_dir: True
-  #entry_points:
-    # Put any entry points (scripts to be generated automatically) here. The
-    # syntax is module:function.  For example
-    #
-    # - periodictable = periodictable:main
-    #
-    # Would create an entry point called periodictable that calls periodictable.main()
-
-
-  # If this is a new build for the same version, increment the build
-  # number. If you do not include this key, it defaults to 0.
-  # number: 1
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
   build:
     - python
     - setuptools
-    - pyparsing
-    - numpy >=1.5
 
   run:
     - python
+    - numpy
     - pyparsing
-    - numpy >=1.5
 
 test:
-  # Python imports
   imports:
     - periodictable
+    - periodictable.density
 
   #commands:
     # You can put test commands to be run here.  Use this to test that the
     # entry points work.
-
 
   # You can also put a file called run_test.py in the recipe that will be run
   # at test time.
@@ -57,9 +43,17 @@ test:
 
 about:
   home: http://www.reflectometry.org/danse/elements.html
-  license: public domain
-  summary: 'Extensible periodic table of the elements'
+  license: Public domain
+  summary: 'Extensible periodic table for python'
 
-# See
-# http://docs.continuum.io/conda/build.html for
-# more information about meta.yaml
+  description: |
+    The periodictable package provides an extensible periodic table
+    of the elements prepopulated with data important to neutron and
+    X-ray scattering experiments. With the elements pacakge you can
+    compute the scattering potential of a compound at a given wavelength.
+  doc_url: http://www.reflectometry.org/danse/docs/elements/
+  dev_url: https://github.com/pkienzle/periodictable
+
+extra:
+  recipe-maintainers:
+    - bjodah
