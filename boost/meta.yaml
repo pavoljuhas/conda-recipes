@@ -10,6 +10,7 @@ source:
     - macosx-serialization-no-hiding.patch      [osx]
 
 build:
+  number: 20
   features:
     - vc9               [win and py27]
     - vc10              [win and py34]
