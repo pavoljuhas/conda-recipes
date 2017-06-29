@@ -11,6 +11,23 @@
 set -x -e
 set -o pipefail
 
+# Require MACOSX_DEPLOYMENT_TARGET <= 10.8 to make sure the
+# macosx-serialization-no-hiding.patch is relevant.
+if [[ "$(uname)" == Darwin ]]; then
+    case "${MACOSX_DEPLOYMENT_TARGET}" in
+	10.[678])
+	    : "OK, do nothing."
+	    ;;
+	*)
+	    t="$MACOSX_DEPLOYMENT_TARGET"
+	    echo "Expected MACOSX_DEPLOYMENT_TARGET <= 10.8, got '$t'." >&2
+	    echo "macosx-serialization-no-hiding.patch may be unnecessary." >&2
+	    exit 2
+	    ;;
+    esac
+fi
+
+
 case `uname` in
     Darwin)
         b2_options=( toolset=clang )
