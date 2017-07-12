@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import unittest
+import importlib
 
 testmodulenames = '''
     diffpy.Structure.tests
@@ -12,7 +13,7 @@ testmodulenames = '''
 
 testmodules = []
 for mname in testmodulenames:
-    exec('import ' + mname + ' as tm')
+    tm = importlib.import_module(mname)
     testmodules.append(tm)
 
 suite = unittest.TestSuite()
