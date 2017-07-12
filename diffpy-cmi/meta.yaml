@@ -28,7 +28,6 @@ requirements:
     - diffpy.srreal 1.2
 
     - ipython
-    - ipyparallel
     - jupyter
     - scipy
     - matplotlib
