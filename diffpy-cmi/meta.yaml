@@ -1,21 +1,32 @@
 package:
   name: diffpy-cmi
-  version: 2.1
+  version: 2.1          # [py2k]
+  version: 3.0a0        # [py3k]
 
 build:
   number: 0
 
 requirements:
   run:
-    - diffpy.structure 1.3.5
-    - diffpy.utils 1.2.2
+
+    # Python 2
+    - diffpy.structure 1.3.5    # [py2k]
+    - diffpy.utils 1.2.2        # [py2k]
+    - diffpy.srfit 1.3          # [py2k]
+    - srfit-sasview 3.1.2       # [py2k]
+
+    # Python 3
+    - diffpy.utils 3.0a2        # [py3k]
+    - diffpy.structure 3.0a2    # [py3k]
+    - diffpy.srfit 3.0a0        # [py3k]
+
+    # Python 3 and 2
     - libobjcryst 2017.1.1
     - pyobjcryst 2.0.2
     - periodictable 1.5.0
     - libdiffpy 1.3.4
     - diffpy.srreal 1.2
-    - diffpy.srfit 1.3
-    - srfit-sasview 3.1.2
+
     - ipython
     - ipyparallel
     - jupyter

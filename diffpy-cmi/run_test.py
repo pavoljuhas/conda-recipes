@@ -1,15 +1,18 @@
 #!/usr/bin/env python
 
+import sys
 import unittest
 import importlib
 
-testmodulenames = '''
-    diffpy.Structure.tests
-    diffpy.utils.tests
-    diffpy.srreal.tests
-    pyobjcryst.tests
-    diffpy.srfit.tests
-'''.split()
+PY3K = sys.version_info[0] >= 3
+
+testmodulenames = [
+    ('diffpy.structure.tests' if PY3K else 'diffpy.Structure.tests'),
+    'diffpy.utils.tests',
+    'diffpy.srreal.tests',
+    'pyobjcryst.tests',
+    'diffpy.srfit.tests',
+]
 
 testmodules = []
 for mname in testmodulenames:
