@@ -6,5 +6,6 @@ MYTARGETDIR="${PREFIX}/${MYSUFFIXDIR}"
 
 mkdir -p "${MYBINDIR}"
 mkdir -p "${MYTARGETDIR}"
+
 cp -r ./ "${MYTARGETDIR}/"
-ln -s "../${MYSUFFIXDIR}/bin/cxxtestgen" "${MYBINDIR}/"
+cp "${RECIPE_DIR}/cxxtestgen" "${MYBINDIR}/"
