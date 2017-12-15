@@ -16,10 +16,11 @@ requirements:
     - python
 
 test:
+  source_files:
+    - doc/examples/MyTestSuite1.h
+
   commands:
-    # You can put test commands to be run here.  Use this to test that the
-    # entry points work.
-    - cxxtestgen --version | fgrep -q "CxxTest version ${PKG_VERSION}."
+    # provided in run_test.sh
 
 about:
   home: http://cxxtest.com/
